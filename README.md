@@ -1,7 +1,16 @@
 # Deciphering Gene Expression Differences Caused by Aging in Mice Brain Cell Types Using
 
 ## Description
-For our project we will be reproducing UMAPs based on cell type at different age intervals, juvenile or old, to see the gene expression difference based on transcriptomics data. We will be using R for this plotting. We will also be reproducing the heatmap of top marker genes, and functional analysis of the highest variable genes. This project will give us a better understanding of the regulations of pathways during aging, and the scripts can be used to analyze other sc-RNA seq datasets. Data and coding scripts from this paper are publicly available, we will modify them to achieve our goal. 
+For our project we will be reproducing UMAPs based on cell type at different age intervals, juvenile (4 weeks old) or old (9 weeks old), to see the gene expression difference based on transcriptomics data. We will be using R for this plotting. We will also be reproducing the heatmap of top marker genes, and functional analysis of the highest variable genes. This project will give us a better understanding of the regulations of pathways during aging, and the scripts can be used to analyze other sc-RNA seq datasets. Data and coding scripts from this paper are publicly available, we will modify them to achieve our goal. 
+Original Article: [https://www.sciencedirect.com/science/article/pii/S0092867422015239?via%3Dihub#da0010]
+
+## Organization
+  |-- README            <-- title, description, overview of figure
+	|-- Data/             <-- only small (<1 Mb), instructions on retrieving larger
+	|-- Documents/              <-- check-ins, slides
+	|-- Results/          <-- only small (<1 Mb), instructions on retrieving larger
+	|- Src/              <-- code
+
 
 ## Examples of Published Figures
 ![](https://ars.els-cdn.com/content/image/1-s2.0-S0092867422015239-figs1_lrg.jpg)
@@ -9,13 +18,14 @@ For our project we will be reproducing UMAPs based on cell type at different age
 ## Data Set
 snRNA seq: [https://datasets.cellxgene.cziscience.com/a5b4edba-e532-4f28-b9e6-ce42cdc3ba14.h5ad] 
 ID: GEO: GSE207848
+Author's GitHub Repository: [https://github.com/ZhuangLab/SpatialBrainAgingCell22/tree/main/notebooks]
 
-## Software (No Versions Cited in the Paper)
+## Software Used (No Versions Cited in the Paper)
 Python v3.12.3: We will use this to analyze the RNAseq data.
 R v4.4.1: We will use this to visualize our data by making a UMAP and Heatmap.
 
 ### Python Packages with links
-- matplotlib.pyplot: https://matplotlib.org/stable/install/index.html
+- matplotlib.pyplot: [https://matplotlib.org/stable/install/index.html]
 - numpy: [https://numpy.org/install/]
 - scanpy: [https://github.com/scverse/scanpy]
 - pandas: [https://pypi.org/project/pandas/]
@@ -26,6 +36,7 @@ R v4.4.1: We will use this to visualize our data by making a UMAP and Heatmap.
 - ggplot2: [https://ggplot2.tidyverse.org/]
 - umap: [https://cran.r-project.org/web/packages/umap/index.html]
 - uwot: [https://cran.r-project.org/web/packages/uwot/index.html]
+- Seurat
 
 ## Goals
 1. Producing UMAP based on cell type at different age intervals using our own code written in R.

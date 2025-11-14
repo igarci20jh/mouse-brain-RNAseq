@@ -23,16 +23,14 @@ We have researched different ways of reading in the .h5ad file into R studio, do
 We will also plan for alternative solutions in case we cannot resolve the issue such as using different package in python to create our own UMAP script, and maybe generate the heatmap and PCA plot in python, and performing some gene ontology analysis using the Goscript package. 
 
 ## Project Organization
-|-- README            <-- title, description, overview of figure
+'''
+    |-- README                <-- title, description, overview of figure
+	    |-- Data/             <-- only small (<1 Mb), instructions on retrieving larger
+	    |-- Documents/        <-- check-ins, slides
+	    |-- Results/          <-- only small (<1 Mb), instructions on retrieving larger
+	    |- Src/               <-- code
+'''
 
-	|-- Data/             <-- only small (<1 Mb), instructions on retrieving larger
-
-	|-- Documents/              <-- check-ins, slides
-
-	|-- Results/          <-- only small (<1 Mb), instructions on retrieving larger
-
-	|- Src/              <-- code
-    
 
 ## Struggles We Have Encountered
 We are having problems reading in the .h5ad file into R in order to actually create the UMAP but through some research online found that we could use the Seurat package. Using this we still encountered some errors having to do with RAM. We also tried using zellkonverter instead since, through some research, we found that it may be more memory efficient. It is more memory efficient because it uses HDF5-backed arrays instead of copying the whole dataset. We were still running into errors so we switched back to Seurat but again got the error “Error: vector memory limit of 16.0 Gb reached, see mem.maxVSize()”

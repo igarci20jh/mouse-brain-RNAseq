@@ -34,9 +34,11 @@ umap_embeddings <- Embeddings(sce, "umap")
 # Plotting UMAP
 umap_df <- as.data.frame(umap_embeddings)
 head(umap_df)
+umap_df$idx <- rownames(umap_df)
+rownames(umap_df) <- NULL
 
-age_df <- read_delim("age.tsv", headers = FALSE,row.names = NULL)  #play with row names and column names = True 
-umap_df_age <- merge.data.frame(umap_df, age_df, by = "name")
+age_df <- read_delim("age.tsv")  #play with row names and column names = True 
+umap_df_age <- merge.data.frame(umap_df, age_df, by = "idx")
 
 # Color by clusters
 umap_df$cluster <- Idents(sce)  
@@ -50,11 +52,14 @@ ggsave("UMAP_BY_CELLTYPE.png")
 
 #plotting UMAP by Age
 # change umap_df to merged dataframe
-ggplot(umap_df, aes(x = umap_1, y = umap_2, color = age)) +
+
+ggplot(umap_df_age, aes(x = umap_1, y = umap_2, color = age)) +
   geom_point() +
   theme_classic() +
   labs(title = "UMAP by Age")
 ggsave("UMAP_BY_AGE.png")
+
+
 
 
 

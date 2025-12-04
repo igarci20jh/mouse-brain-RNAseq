@@ -1,4 +1,3 @@
-
 library(Seurat)
 library(SeuratDisk)
 library(ggplot2)
@@ -10,7 +9,6 @@ setwd("/Users/cmdb/qb25project/mouse-brain-RNAseq/")
 # Read .h5ad with low memory usage
 Convert("adata_combined_nodoublet.h5ad", dest = "h5seurat", overwrite = TRUE)
 sce <- LoadH5Seurat("adata_combined_nodoublet.h5seurat", meta.data = FALSE, misc = FALSE)
-#sce <- readH5AD("adata_combined_nodoublet_normalized.h5ad")
 
 # Running PCA for UMAP
 
@@ -23,7 +21,7 @@ sce <- RunPCA(sce, assay = "RNA", verbose = TRUE)
 ElbowPlot(sce)
 
 sce <- FindNeighbors(sce, dims = 1:7)
-sce <- FindClusters(sce, resolution = 0.5)
+sce <- FindClusters(sce, resolution = 1)
 head(Idents(sce))
 
 #Run UMAP
@@ -37,18 +35,29 @@ umap_embeddings <- Embeddings(sce, "umap")
 umap_df <- as.data.frame(umap_embeddings)
 head(umap_df)
 
+age_df <- read_delim("age.tsv", headers = FALSE,row.names = NULL)  #play with row names and column names = True 
+umap_df_age <- merge.data.frame(umap_df, age_df, by = "name")
+
 # Color by clusters
 umap_df$cluster <- Idents(sce)  
 
-# Plotting UMAP
+# Plotting UMAP by cell type
 ggplot(umap_df, aes(x = umap_1, y = umap_2, color = cluster)) +
   geom_point() +
   theme_classic() +
   labs(title = "UMAP by Cell Type")
 ggsave("UMAP_BY_CELLTYPE.png")
 
+#plotting UMAP by Age
+# change umap_df to merged dataframe
 ggplot(umap_df, aes(x = umap_1, y = umap_2, color = age)) +
   geom_point() +
   theme_classic() +
   labs(title = "UMAP by Age")
 ggsave("UMAP_BY_AGE.png")
+
+
+
+
+
+

@@ -11,6 +11,8 @@ Original Article: [https://www.sciencedirect.com/science/article/pii/S0092867422
 	|-- Results/          <-- only small (<1 Mb), instructions on retrieving larger
 	|- Src/              <-- code
 
+## Link to slides
+[https://docs.google.com/presentation/d/1YtNAYVfFjop5BxxWULu_HAfw7nBC8vaR0XeXyzl7IJM/edit?usp=sharing]
 
 ## Examples of Published Figures
 ![](https://ars.els-cdn.com/content/image/1-s2.0-S0092867422015239-figs1_lrg.jpg)

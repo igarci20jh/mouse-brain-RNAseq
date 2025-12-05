@@ -40,8 +40,9 @@ R v4.4.1: We will use this to visualize our data by making a UMAP and Heatmap.
 
 ## Goals
 1. Producing UMAP based on cell type at different age intervals using our own code written in R.
-  - fitering raw RNA seq data in python through Scanpy in python
+  - filtering raw RNA seq data in python through Scanpy in python
   - creating code in R to perform multi-level clustering based on cell types and ages 
 2. Producing Heat Map for expression of top marker genes
   - filter out the top marker genes from raw RNA seq datas
   - creating code in R to produce heat map to show most different expression based on cell types
+  

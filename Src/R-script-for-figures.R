@@ -20,17 +20,16 @@ sce <- RunPCA(sce, assay = "RNA", verbose = TRUE)
 ElbowPlot(sce)
 
 # Neighbors → clusters → UMAP
-sce <- FindNeighbors(sce, dims = 1:6)
-sce <- FindClusters(sce, resolution = 0.2)
+sce <- FindNeighbors(sce, dims = 1:6) #change the 6 based on skree plot
+sce <- FindClusters(sce, resolution = 0.2) # resolution changes the # of clusters
 sce <- RunUMAP(sce, dims = 1:6)
 
 
 
  
-cell_types <- read.delim("cell_types.tsv")   # columns: idx, cell_type
-age_df <- read.delim("age.tsv")             # columns: idx, age
+cell_types <- read.delim("cell_types.tsv")   #columns: idx, cell_type
+age_df <- read.delim("age.tsv")             #columns: idx, age
 
-# Extract UMAP embedding
 umap_df <- as.data.frame(Embeddings(sce, "umap"))
 umap_df$cell_id <- rownames(umap_df)
 
@@ -41,7 +40,7 @@ umap_df <- merge(umap_df, cell_types, by.x = "cell_id", by.y = "idx")
 umap_df <- merge(umap_df, age_df, by.x = "cell_id", by.y = "idx")
 
 
-# UMAP colored by predicted cell type
+# UMAP for predicted cell type
 
 p1 <- ggplot(umap_df, aes(x = umap_1, y = umap_2, color = cell_type)) +
   geom_point(size = 2) +
@@ -49,7 +48,8 @@ p1 <- ggplot(umap_df, aes(x = umap_1, y = umap_2, color = cell_type)) +
   labs(title = "UMAP by Predicted Cell Type",
        y = "UMAP 2",
        x = "UMAP 1") +
-  theme(legend.position = "right")
+  theme(legend.position = "right",
+        text = element_text(size = 16))
 
 print(p1)
 ggsave("UMAP_BY_CELLTYPE.png", p1)
@@ -62,7 +62,8 @@ p2 <- ggplot(umap_df, aes(x = umap_1, y = umap_2, color = age)) +
   labs(title = "UMAP by Age",
        y = "UMAP 2",
        x = "UMAP 1") +
-  theme(legend.position = "right")
+  theme(legend.position = "right", 
+        text = element_text(size = 16))
 
 print(p2)
 ggsave("UMAP_BY_AGE.png", p2)
